@@ -10,6 +10,11 @@ public class Jogador {
 		this.nome = nome;
 	}
 
+	public Jogador() {
+		nome = "PC";
+	}
+
+
 	//geters and setters
 	public String getNome() {
 		return nome;
