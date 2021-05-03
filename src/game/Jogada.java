@@ -1,7 +1,7 @@
 package game;
 
 // implementa regras do jogo e operação PLAY
-public class Jogar {
+public class Jogada {
 
 	public static void obterVencedor(Jogador jogadorHumano, Jogador jogadorPc) {
 		if (jogadorHumano.getEscolha() == jogadorPc.getEscolha()){

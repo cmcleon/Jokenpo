@@ -5,15 +5,18 @@ package game;
 import java.util.Random;
 import java.util.Scanner;
 
-import senai.Usuario;
-
 
 public class Main {
 	public static void main(String[] args) {
+		jogo();
+		
+	}
+	
+	public static void jogo () {
+		System.out.println("--- Game JoKenPo --- ");
 		Scanner leitor = new Scanner(System.in);
 		Random geradorEscolha = new Random();
 		
-		System.out.println("--- Game JoKenPo --- ");
 		//verificando se o usuário informou o nome
 		Jogador humano = new Jogador(verificarNome(leitor));
 		Jogador virtual = new Jogador();
@@ -22,15 +25,31 @@ public class Main {
 		humano.setEscolha(verificarEscolha(leitor));
 		
 		System.out.println();
-		
+
 		int opcaoEscolhidaPC = geradorEscolha.nextInt(3) + 1;
 		System.out.println("Jogador Virtual escolheu: " + opcaoEscolhidaPC);
 		virtual.setEscolha(opcaoEscolhidaPC);
 		
 		System.out.println();
 			
-		Jogar.obterVencedor(humano, virtual);		
+		Jogada.obterVencedor(humano, virtual);
+		
+		leitor = new Scanner(System.in);
+		
+		System.out.println();
+
+		String resposta = verificarJogarNovamente(leitor);
+		System.out.println();
+		if (resposta.toUpperCase().equals("S")) {			
+			jogo();	
+			
+		}
+		else {
+			System.out.println("Fim de jogo");
+		}
+		leitor.close();
 	}
+	
 	
 	public static String verificarNome (Scanner leitor){
 		System.out.print("Nome Jogador 1: ");
@@ -50,13 +69,37 @@ public class Main {
 		int opcaoEscolhida = leitor.nextInt();
 
 		while (opcaoEscolhida == 0 || opcaoEscolhida > 3) {	
-			System.out.print("Ops! Você so pode escolher entre : 1 = Pedra, 2 = Papel, 3 = Tesoura: ");
+			System.out.print("Ops! Você só pode escolher entre : 1 = Pedra, 2 = Papel, 3 = Tesoura: ");
 			opcaoEscolhida = leitor.nextInt();
 		}
 		return opcaoEscolhida;
 	}
+
+
+	public static String verificarJogarNovamente (Scanner leitor) {
+		System.out.println("Você deseja jogar novamente? (S/N) ");
+		String resposta = leitor.nextLine();
+		
+		while (!resposta.toUpperCase().equals("S") && !resposta.toUpperCase().equals("N")) {	
+			System.out.print("Ops! Você deseja jogar novamente? (S/N) ");
+			resposta= leitor.nextLine();
+			System.out.println();
+			
+			}
+
+		return resposta;
+	}
+	
+	
 }
 		
+		
+	
+
+
+	
+
+	
 		
 	
 
